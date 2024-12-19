@@ -3,7 +3,7 @@
 <br>
 <p style="color:red;">Don't Use it in any illegal activities, the author or TEdtr not responsible for it </p>
 <br>
-<img src="https://i.postimg.cc/4nks4B3c/TEdtr.jpg">
+<img src="https://i.postimg.cc/XJfTc4Nr/TEdtr.jpg">
 ## Installing (Kali Linux/Termux):
 
 ```
