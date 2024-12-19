@@ -1,7 +1,7 @@
 # TEdtr_CamPhish
 <p>This Tool Edited by TEdtr.</p>
 <br>
-<p style=color:red;>Don't Use it in any illegal activities, the author or TEdtr not responsible for it </p>
+<p style:color=red;>Don't Use it in any illegal activities, the author or TEdtr not responsible for it </p>
 
 ## Installing (Kali Linux/Termux):
 
