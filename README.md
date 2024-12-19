@@ -10,7 +10,8 @@
 ```
 git clone https://github.com/ToolEditor/TEdtr_CamPhish.git
 cd TEdtr_CamPhish
-bash camphish.sh
+chmod +x camphish.sh
+./camphish.sh
 ```
 
 
